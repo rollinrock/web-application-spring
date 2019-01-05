@@ -1,0 +1,4 @@
+studio/rollinrock/maven/archetypes/exception/BizException.class
+studio/rollinrock/maven/archetypes/response/HttpResp.class
+studio/rollinrock/maven/archetypes/App.class
+studio/rollinrock/maven/archetypes/response/BaseResp.class
