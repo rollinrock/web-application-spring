@@ -29,14 +29,6 @@ public class LastOrderedControllerAdvice {
         return HttpResp.of(e);
     }
 
-    @ExceptionHandler(IllegalArgumentException.class)
-    @ResponseBody
-    @ResponseStatus(HttpStatus.OK)
-    public HttpResp handle(IllegalArgumentException e, HttpServletRequest request){
-        log.error("接口[uri:{}]处理异常:{}", request.getRequestURI(), e.getMessage());
-        return HttpResp.of(e);
-    }
-
 
 
 }
