@@ -5,17 +5,20 @@
        	http://www.springframework.org/schema/beans
        	http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context
-		http://www.springframework.org/schema/context/spring-context.xsd
-	">
+		http://www.springframework.org/schema/context/spring-context.xsd"
+>
 
     <!--隐式地向 Spring 容器注册 -->
     <context:annotation-config />
 
     <context:component-scan base-package="studio.rollinrock.maven.archetypes" >
         <context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.RestController" />
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
 
-    <context:property-placeholder location="classpath*:jdbc.properties" />
+    <context:property-placeholder location="classpath:META-INF/config.properties,
+                                            classpath*:jdbc.properties"
+                                  ignore-resource-not-found="true" />
 
-    <import resource="classpath*:META-INF/datasource.xml"/>
+    <import resource="classpath*:META-INF/spring-dao.xml"/>
 </beans>

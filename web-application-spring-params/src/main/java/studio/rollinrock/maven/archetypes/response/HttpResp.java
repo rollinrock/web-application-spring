@@ -2,6 +2,9 @@ package studio.rollinrock.maven.archetypes.response;
 
 import studio.rollinrock.maven.archetypes.exception.BizException;
 
+import javax.annotation.Nullable;
+import java.util.MissingResourceException;
+
 /**
  * @author rollinrock
  * @mail caojing9111@outlook.com
@@ -20,22 +23,19 @@ public class HttpResp<E> extends BaseResp<E>{
         super(code, desc, result);
     }
 
-    private static <T> HttpResp<T> ofException(String exceptionCanonicalName, Exception e){
+    public static <T> HttpResp<T> of(Exception e){
         HttpResp<T> resp = new HttpResp<>();
-        resp.setCode(getResourceBundle().getString(exceptionCanonicalName.concat(CODE_SUFFIX)));
+        try {
+            resp.setCode(getResourceBundle().getString(e.getClass().getCanonicalName().concat(CODE_SUFFIX)));
+        } catch (MissingResourceException mre) {
+            resp.setCode(getResourceBundle().getString(Exception.class.getCanonicalName().concat(CODE_SUFFIX)));
+        }
         resp.setDesc(String.format(getResourceBundle().getString(resp.getCode()), e.getMessage()));
 
         return resp;
     }
-    public static <T> HttpResp<T> of(Exception e){
-        if (e instanceof IllegalArgumentException)
-            return ofException(IllegalArgumentException.class.getCanonicalName(), e);
-        else if (e instanceof BizException)
-            return ofException(BizException.class.getCanonicalName(), e);
-        return ofException(Exception.class.getCanonicalName(), e);
-    }
 
-    public static <T> HttpResp<T> succeed(T result){
+    public static <T> HttpResp<T> succeed(@Nullable T result){
         HttpResp<T> resp = new HttpResp<>();
         resp.setCode(SUCCEED_CODE);
         resp.setDesc(getResourceBundle().getString(resp.getCode()));

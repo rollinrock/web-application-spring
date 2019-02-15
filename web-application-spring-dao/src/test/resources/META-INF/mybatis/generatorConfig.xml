@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="testMyBatis3" targetRuntime="MyBatis3" >
+
+        <plugin type="org.mybatis.generator.plugins.MapperAnnotationPlugin" />
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/mybatis"
+                        userId="root" password="caojing"/>
+        <javaModelGenerator targetPackage="studio.rollinrock.maven.archetypes.entity" targetProject="src/test/java" />
+        <sqlMapGenerator targetPackage="mybatis.mapper" targetProject="src/test/resources" />
+        <javaClientGenerator type="XMLMAPPER" targetPackage="studio.rollinrock.maven.archetypes.mapper" targetProject="src/test/java" />
+        <table tableName="user_profile" />
+
+    </context>
+
+
+</generatorConfiguration>

@@ -17,9 +17,6 @@
 
     <context:component-scan base-package="studio.rollinrock.maven.archetypes.controller" />
 
-    <context:property-placeholder location="classpath:META-INF/config.properties"
-                                  ignore-resource-not-found="true" />
-
 
     <bean id="jsonConverter"
           class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" >
